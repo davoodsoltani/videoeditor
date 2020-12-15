@@ -229,6 +229,10 @@ class TrinityRecord(
   fun setSpeed(speed: Speed) {
     mSpeed = speed
   }
+  
+  fun setAspectRatio(a:Int, b:Int){
+    mAspectRatio = AspectRatio.of(a, b)
+  }
 
   /**
    * 设置画幅
