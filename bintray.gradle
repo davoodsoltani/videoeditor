@@ -1,0 +1,97 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+ext {
+    bintrayRepo = 'videoEditor' // نام مخزن
+    bintrayName = 'videoEditor' // نام پکیج
+    // publishedGroupId:artifact:libraryVersion
+    publishedGroupId = 'com.trinity' // پکیج‌نیم لایبرری
+    artifact = 'library' // اسم ماژول
+    libraryVersion = '0.2.9.1' // نسخه
+    libraryName = 'videoEditor' // عنوان لایبرری
+    libraryDescription = 'videoEditor' // توضیح برای لایبریی
+    siteUrl = 'https://github.com/davoodsoltani/trinity' // لینک سایت
+    gitUrl = 'https://github.com/davoodsoltani/trinity.git' // لینک گیت
+    developerId = 'davoodsoltani' // آی‌دی توسعه‌دهنده
+    developerName = 'davood soltani' // اسم توسعه‌دهنده
+    developerEmail = 'davoodsoltani.70@gmail.com' // ایمیل
+    licenseName = 'The Apache Software License, Version 2.0' // عنوان لایسنس
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt' // لینک لایسنس
+    allLicenses = ["Apache-2.0"] // همه‌ی لایسنس‌ها
+}
+
+group = publishedGroupId
+version = libraryVersion
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            packaging 'aar'
+            groupId publishedGroupId
+            artifactId artifact
+            name libraryName
+            description libraryDescription
+            url siteUrl
+            licenses {
+                license {
+                    name licenseName
+                    url licenseUrl
+                }
+            }
+            developers {
+                developer {
+                    id developerId
+                    name developerName
+                    email developerEmail
+                }
+            }
+            scm {
+                connection gitUrl
+                developerConnection gitUrl
+                url siteUrl
+            }
+        }
+    }
+}
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = bintrayRepo
+        name = bintrayName
+        desc = libraryDescription
+        userOrg = 'davixend'
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        dryRun = false
+        publish = true
+        override = false
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+        }
+    }
+}

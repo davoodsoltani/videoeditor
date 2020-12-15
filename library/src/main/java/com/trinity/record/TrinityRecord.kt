@@ -26,12 +26,12 @@ import android.provider.Settings.SettingNotFoundException
 import android.view.OrientationEventListener
 import android.view.Surface
 import com.tencent.mars.xlog.Log
-import com.trinity.BuildConfig
 import com.trinity.Constants
 import com.trinity.ErrorCode
 import com.trinity.OnRecordingListener
 import com.trinity.camera.*
 import com.trinity.core.Frame
+import com.trinity.BuildConfig
 import com.trinity.core.MusicInfo
 import com.trinity.core.RenderType
 import com.trinity.editor.VideoExportInfo

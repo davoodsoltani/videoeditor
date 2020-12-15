@@ -1,1 +1,2 @@
+include ':davix'
 include ':app', ':library'
