@@ -81,7 +81,7 @@ class TrinityRecord(
   // surface texture
   private var mSurfaceTexture: SurfaceTexture ?= null
   // texture矩阵
-  private var mTextureMatrix = FloatArray(16)
+  private val mTextureMatrix = FloatArray(16)
   // 硬编码对象
   private var mSurfaceEncoder = MediaCodecSurfaceEncoder()
   // Surface 对象
@@ -232,7 +232,6 @@ class TrinityRecord(
   
   fun setAspectRatio(a:Int, b:Int){
     mAspectRatio = AspectRatio.of(a, b)
-    mTextureMatrix = FloatArray(a)
   }
 
   /**
