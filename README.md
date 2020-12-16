@@ -267,7 +267,7 @@ allprojects {
 	}
 }
 dependencies {
-    implementation 'com.github.davoodsoltani:videoeditor:0.1.3'
+    implementation 'com.github.davoodsoltani:videoeditor:0.1.4'
 }
 ```
 ### Load Libraries in Application class
