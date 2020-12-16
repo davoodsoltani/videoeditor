@@ -69,11 +69,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
-////生成源文件
-//task sourcesJar(type: Jar) {
-//    from android.sourceSets.main.java.srcDirs
-//    classifier = 'sources'
-//}
+//生成源文件
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
 
 //生成Javadoc文档
 //task javadoc(type: Javadoc) {
@@ -94,10 +94,10 @@ dependencies {
 //}
 
 //上传到JCenter所需要的源码文件
-//artifacts {
+artifacts {
 //    archives javadocJar
-//    archives sourcesJar
-//}
+    archives sourcesJar
+}
 
 //解决 JavaDoc 中文注释生成失败的问题
 tasks.withType(Javadoc) {
@@ -117,4 +117,3 @@ publish {
     bintrayUser = bintray_user
     bintrayKey = bintray_key
 }
-apply from: '../bintray.gradle'
