@@ -258,6 +258,17 @@ Just enter the device name in the terminal
 dependencies {
     implementation 'com.github.wlanjie:trinity:0.2.9.1'
 }
+
+// if set aspectRatio and other resolution
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+dependencies {
+    implementation 'com.github.davoodsoltani:videoeditor:0.1.3'
+}
 ```
 ### Load Libraries in Application class
 ```
